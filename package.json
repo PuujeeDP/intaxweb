@@ -1,0 +1,44 @@
+{
+    "$schema": "https://json.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "@vitejs/plugin-react": "^5.0.4",
+        "autoprefixer": "^10.4.21",
+        "axios": "^1.11.0",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^2.0.0",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.1.14",
+        "vite": "^7.0.7"
+    },
+    "dependencies": {
+        "@inertiajs/react": "^2.2.6",
+        "@tinymce/tinymce-react": "^6.3.0",
+        "@tiptap/extension-bubble-menu": "^3.10.1",
+        "@tiptap/extension-color": "^3.7.2",
+        "@tiptap/extension-font-family": "^3.10.1",
+        "@tiptap/extension-highlight": "^3.10.1",
+        "@tiptap/extension-image": "^3.7.2",
+        "@tiptap/extension-link": "^3.7.2",
+        "@tiptap/extension-table": "^3.7.2",
+        "@tiptap/extension-table-cell": "^3.7.2",
+        "@tiptap/extension-table-header": "^3.7.2",
+        "@tiptap/extension-table-row": "^3.7.2",
+        "@tiptap/extension-text-align": "^3.10.1",
+        "@tiptap/extension-text-style": "^3.7.2",
+        "@tiptap/extension-underline": "^3.10.1",
+        "@tiptap/extension-youtube": "^3.11.0",
+        "@tiptap/pm": "^3.7.2",
+        "@tiptap/react": "^3.7.2",
+        "@tiptap/starter-kit": "^3.7.2",
+        "alpinejs": "^3.15.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+    }
+}

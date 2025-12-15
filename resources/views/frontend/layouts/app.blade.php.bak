@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- SEO Meta Tags --}}
+    <title>{{ $metaTitle ?? config('app.name', 'MagicCMS') }}</title>
+    <meta name="description" content="{{ $metaDescription ?? 'Multi-language Content Management System' }}">
+    <meta name="keywords" content="{{ $metaKeywords ?? 'cms, laravel, blog' }}">
+
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $metaTitle ?? config('app.name') }}">
+    <meta property="og:description" content="{{ $metaDescription ?? '' }}">
+    @isset($ogImage)
+        <meta property="og:image" content="{{ $ogImage }}">
+    @endisset
+
+    {{-- Twitter --}}
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $metaTitle ?? config('app.name') }}">
+    <meta property="twitter:description" content="{{ $metaDescription ?? '' }}">
+    @isset($ogImage)
+        <meta property="twitter:image" content="{{ $ogImage }}">
+    @endisset
+
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
+
+    {{-- Styles --}}
+    @vite(['resources/css/app.css', 'resources/js/app-frontend.js'])
+
+    @stack('styles')
+</head>
+<body class="font-sans antialiased bg-gray-50">
+    {{-- Navigation --}}
+    @include('frontend.layouts.partials.header')
+
+    {{-- Main Content --}}
+    <main class="min-h-screen">
+        @yield('content')
+    </main>
+
+    {{-- Footer --}}
+    @include('frontend.layouts.partials.footer')
+
+    @stack('scripts')
+</body>
+</html>

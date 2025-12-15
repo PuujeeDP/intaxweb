@@ -1,0 +1,43 @@
+@extends('frontend.layouts.app')
+
+@php
+    $metaTitle = $page->meta_title ?? $page->title;
+    $metaDescription = $page->meta_description ?? Str::limit(strip_tags($page->content), 160);
+@endphp
+
+@section('content')
+<article class="bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Title --}}
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            {{ $page->title }}
+        </h1>
+
+        {{-- Meta Info --}}
+        <div class="flex items-center space-x-4 text-sm text-gray-600 mb-8 pb-8 border-b border-gray-200">
+            <span class="flex items-center">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <time datetime="{{ $page->created_at->format('Y-m-d') }}">
+                    {{ $page->created_at->format('F j, Y') }}
+                </time>
+            </span>
+
+            @if($page->author)
+            <span class="flex items-center">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                {{ $page->author->name }}
+            </span>
+            @endif
+        </div>
+
+        {{-- Content --}}
+        <div class="prose prose-lg max-w-none">
+            {!! nl2br(e($page->content)) !!}
+        </div>
+    </div>
+</article>
+@endsection

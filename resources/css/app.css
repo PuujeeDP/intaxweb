@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.jsx';
+
+@theme {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Float animation for Office 365 icons */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    /* Fade in up animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Custom animations */
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.magicbg {
+    background-image: url("../../public/images/headerbg.svg"), linear-gradient(to bottom, #16a34a, #15803d);
+        background-position: 50% 110%, 0 0;
+        background-repeat: no-repeat, repeat;
+        background-size: 1600px, auto;
+}
+
+/* Frontend prose line-height override */
+.prose p,
+.prose li,
+.prose td,
+.prose th {
+    line-height: 26px !important;
+}
+
+/* Frontend prose H2 heading with underline */
+.prose h2 {
+    color: #16a34a !important; /* green-600 */
+    position: relative !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.prose h2::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 3px !important;
+    background: linear-gradient(to right, #16a34a 0%, #16a34a 30%, #f4f4f4 30%, #f4f4f4 100%) !important;
+}
+
+/* Frontend prose H3 heading with green color */
+.prose h3 {
+    color: #16a34a !important; /* green-600 */
+}
+
+/* Frontend prose HR tag styling */
+.prose hr {
+    border: none !important;
+    height: 2px !important;
+    background-color: #f4f4f4 !important;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Frontend prose list styling */
+.prose ul {
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.prose ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.prose li {
+    display: list-item !important;
+    padding-left: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.prose ul > li::marker,
+.prose ol > li::marker {
+    color: #16a34a !important; /* green-600 */
+    font-weight: 600 !important;
+}
+
+/* Frontend prose table styling */
+.prose table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    border: 2px solid #16a34a !important; /* green-600 border */
+    border-radius: 0.5rem !important;
+    overflow: hidden !important;
+}
+
+.prose thead {
+    background: linear-gradient(to bottom, #16a34a, #15803d) !important; /* green-600 to green-700 */
+}
+
+.prose thead th {
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 0.75rem 1rem !important;
+    text-align: left !important;
+    border-bottom: 2px solid #15803d !important; /* green-700 */
+    font-size: 0.875rem !important;
+    text-transform: none !important;
+    letter-spacing: 0.025em !important;
+}
+
+.prose tbody tr {
+    border-bottom: 1px solid #e5e7eb !important; /* gray-200 */
+    transition: background-color 0.2s ease !important;
+}
+
+.prose tbody tr:hover {
+    background-color: #f0fdf4 !important; /* green-50 */
+}
+
+.prose tbody tr:last-child {
+    border-bottom: none !important;
+}
+
+.prose tbody td {
+    padding: 0.875rem 1rem !important;
+    color: #374151 !important; /* gray-700 */
+    vertical-align: top !important;
+}
+
+.prose tbody tr:nth-child(even) {
+    background-color: #f9fafb !important; /* gray-50 */
+}
+
+.prose tbody tr:nth-child(even):hover {
+    background-color: #f0fdf4 !important; /* green-50 */
+}
+
+/* Frontend image border radius */
+.prose img {
+    border-radius: 8px;
+}
+
+/* Global frontend image border radius (for images outside prose) */
+main img,
+article img,
+section img,
+.animate-fade-in-up img {
+    border-radius: 8px;
+}
