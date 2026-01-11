@@ -81,7 +81,7 @@ class SliderController extends Controller
         // Get all translations
         $translations = [];
         $locales = array_keys(available_locales());
-        $translatableFields = $slider->translatable ?? ['title', 'subtitle', 'description'];
+        $translatableFields = $slider->translatable ?? ['title', 'subtitle', 'description', 'button_text', 'button_url'];
 
         foreach ($locales as $locale) {
             foreach ($translatableFields as $field) {
