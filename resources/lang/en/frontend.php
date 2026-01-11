@@ -16,6 +16,7 @@ return [
     'get_started' => 'Get Started',
     'view_all' => 'View All',
     'menu' => 'Menu',
+    'get_consultation'  => 'Get Consultation',
 
     // Home Stats
     'customers' => 'Customers',
@@ -178,7 +179,6 @@ return [
 
     // Services Page
     'our_services' => 'Our Services',
-    'services_subtitle' => 'Financial Products and Services Based on Knowledge Using Advanced Technology',
     'view_details' => 'View Details',
     'no_services' => 'No services available at the moment',
     'services_coming' => 'New services will be added soon',
@@ -218,4 +218,19 @@ return [
     'captcha' => 'Security Check',
     'answer' => 'Answer',
     'captcha_invalid' => 'Incorrect answer. Please try again.',
+
+    // Sidebar
+    'latest_posts' => 'Latest Posts',
+    'need_help' => 'Need Help?',
+    'contact_us_anytime' => 'We are ready to help you anytime',
+
+    // Contact Page - Additional
+    'working_hours' => 'Working Hours',
+    'monday_friday' => 'Monday - Friday',
+    'saturday' => 'Saturday',
+    'sunday' => 'Sunday',
+    'closed' => 'Closed',
+    'quick_response' => 'Quick Response',
+    'response_promise' => 'We aim to respond to your message within 24 business hours',
+    'back_to_posts' => 'All Posts',
 ];

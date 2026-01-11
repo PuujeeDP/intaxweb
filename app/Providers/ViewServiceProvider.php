@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Media;
 use App\Models\Menu;
+use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -56,6 +57,16 @@ class ViewServiceProvider extends ServiceProvider
             // Get footer menu
             $footerMenu = Menu::getByLocation('footer');
 
+            // Get quick links menu
+            $quickLinksMenu = Menu::getByLocation('quicklinks');
+
+            // Get services for footer
+            $footerServices = Service::with('translations')
+                ->where('is_active', true)
+                ->orderBy('order', 'asc')
+                ->limit(6)
+                ->get();
+
             $view->with([
                 'siteName' => $siteName,
                 'siteDescription' => $siteDescription,
@@ -73,6 +84,8 @@ class ViewServiceProvider extends ServiceProvider
                 'footerCopyright' => $footerCopyright,
                 'footerAbout' => $footerAbout,
                 'footerMenu' => $footerMenu,
+                'quickLinksMenu' => $quickLinksMenu,
+                'footerServices' => $footerServices,
             ]);
         });
     }

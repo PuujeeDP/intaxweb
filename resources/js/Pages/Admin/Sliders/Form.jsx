@@ -17,15 +17,13 @@ export default function SliderForm({ slider, translations, locales }) {
 
     const { data, setData, post: submit, put, processing, errors } = useForm({
         image_id: slider?.image_id || '',
-        button_text: slider?.button_text || '',
-        button_url: slider?.button_url || '',
         button_target: slider?.button_target || '_self',
         is_active: slider?.is_active ?? true,
         order: slider?.order || 0,
         translations: translations || {
-            en: { title: '', subtitle: '', description: '' },
-            mn: { title: '', subtitle: '', description: '' },
-            zh: { title: '', subtitle: '', description: '' },
+            en: { title: '', subtitle: '', description: '', button_text: '', button_url: '' },
+            mn: { title: '', subtitle: '', description: '', button_text: '', button_url: '' },
+            zh: { title: '', subtitle: '', description: '', button_text: '', button_url: '' },
         },
     });
 
@@ -168,6 +166,27 @@ export default function SliderForm({ slider, translations, locales }) {
                                             rows={4}
                                             placeholder="Enter description..."
                                         />
+
+                                        <div className="border-t pt-4 mt-4">
+                                            <h3 className="text-sm font-medium text-gray-700 mb-3">Call to Action Button</h3>
+                                            <div className="space-y-4">
+                                                <TextInput
+                                                    label="Button Text"
+                                                    value={data.translations[activeLocale]?.button_text || ''}
+                                                    onChange={(e) => updateTranslation(activeLocale, 'button_text', e.target.value)}
+                                                    error={errors[`translations.${activeLocale}.button_text`]}
+                                                    placeholder="e.g., Learn More"
+                                                />
+
+                                                <TextInput
+                                                    label="Button URL"
+                                                    value={data.translations[activeLocale]?.button_url || ''}
+                                                    onChange={(e) => updateTranslation(activeLocale, 'button_url', e.target.value)}
+                                                    error={errors[`translations.${activeLocale}.button_url`]}
+                                                    placeholder="https://example.com or /page-slug"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
                             </LanguageTabs>
@@ -175,25 +194,9 @@ export default function SliderForm({ slider, translations, locales }) {
 
                         {/* Button Settings */}
                         <div className="bg-white rounded-lg shadow-md p-6">
-                            <h2 className="text-lg font-semibold mb-4">Call to Action Button</h2>
+                            <h2 className="text-lg font-semibold mb-4">Button Target Settings</h2>
 
                             <div className="space-y-4">
-                                <TextInput
-                                    label="Button Text"
-                                    value={data.button_text}
-                                    onChange={(e) => setData('button_text', e.target.value)}
-                                    error={errors.button_text}
-                                    placeholder="e.g., Learn More"
-                                />
-
-                                <TextInput
-                                    label="Button URL"
-                                    value={data.button_url}
-                                    onChange={(e) => setData('button_url', e.target.value)}
-                                    error={errors.button_url}
-                                    placeholder="https://example.com or /page-slug"
-                                />
-
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
                                         Link Target

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -7,10 +8,18 @@
 @source '../**/*.jsx';
 
 @theme {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
 
-    /* Float animation for Office 365 icons */
+    /* inTax Red Color Scheme */
+    --color-primary-red: #d40c19;
+    --color-primary-red-dark: #C41820;
+    --color-primary-red-darker: #A01419;
+    --color-accent-dark: #d40c19;
+    --color-accent-charcoal: #2d2d2d;
+
+    /* Float animation for icons */
     @keyframes float {
         0%, 100% {
             transform: translateY(0px);
@@ -50,17 +59,59 @@
         background-size: 1600px, auto;
 }
 
-/* Frontend prose line-height override */
-.prose p,
+/* inTax Red Theme Colors */
+.bg-intax-red { background-color: #d40c19; }
+.bg-intax-red-dark { background-color: #C41820; }
+.bg-intax-dark { background-color: #d40c19; }
+.bg-intax-charcoal { background-color: #2d2d2d; }
+.text-intax-red { color: #d40c19; }
+.border-intax-red { border-color: #d40c19; }
+.hover\:bg-intax-red-dark:hover { background-color: #C41820; }
+.hover\:text-intax-red:hover { color: #d40c19; }
+
+/* Gradient backgrounds */
+.bg-gradient-intax-red {
+    background: linear-gradient(135deg, #d40c19 0%, #C41820 100%);
+}
+.bg-gradient-intax-dark {
+    background: linear-gradient(135deg, #d40c19 0%, #2d2d2d 100%);
+}
+
+/* Shadow effects */
+.shadow-intax-red {
+    box-shadow: 0 10px 40px rgba(227, 27, 35, 0.25);
+}
+
+/* Smooth transition */
+.transition-intax {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Frontend prose paragraph and line-height styling */
+.prose p {
+    margin-top: 1.25em !important;
+    margin-bottom: 1.25em !important;
+    line-height: 1.8 !important;
+    color: #374151 !important; /* gray-700 */
+}
+
+.prose p:first-child {
+    margin-top: 0 !important;
+}
+
+.prose p:last-child {
+    margin-bottom: 0 !important;
+}
+
 .prose li,
 .prose td,
 .prose th {
-    line-height: 26px !important;
+    line-height: 1.75 !important;
 }
 
 /* Frontend prose H2 heading with underline */
 .prose h2 {
-    color: #16a34a !important; /* green-600 */
+    color: #d40c19 !important; /* intax-red */
     position: relative !important;
     padding-bottom: 1rem !important;
     margin-bottom: 2rem !important;
@@ -73,12 +124,12 @@
     left: 0 !important;
     width: 100% !important;
     height: 3px !important;
-    background: linear-gradient(to right, #16a34a 0%, #16a34a 30%, #f4f4f4 30%, #f4f4f4 100%) !important;
+    background: linear-gradient(to right, #d40c19 0%, #d40c19 30%, #f4f4f4 30%, #f4f4f4 100%) !important;
 }
 
-/* Frontend prose H3 heading with green color */
+/* Frontend prose H3 heading with red color */
 .prose h3 {
-    color: #16a34a !important; /* green-600 */
+    color: #d40c19 !important; /* intax-red */
 }
 
 /* Frontend prose HR tag styling */
@@ -114,7 +165,7 @@
 
 .prose ul > li::marker,
 .prose ol > li::marker {
-    color: #16a34a !important; /* green-600 */
+    color: #d40c19 !important; /* intax-red */
     font-weight: 600 !important;
 }
 
@@ -124,13 +175,13 @@
     border-collapse: collapse !important;
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
-    border: 2px solid #16a34a !important; /* green-600 border */
+    border: 2px solid #d40c19 !important; /* intax-red border */
     border-radius: 0.5rem !important;
     overflow: hidden !important;
 }
 
 .prose thead {
-    background: linear-gradient(to bottom, #16a34a, #15803d) !important; /* green-600 to green-700 */
+    background: linear-gradient(to bottom, #d40c19, #C41820) !important; /* intax gradient */
 }
 
 .prose thead th {
@@ -138,7 +189,7 @@
     font-weight: 600 !important;
     padding: 0.75rem 1rem !important;
     text-align: left !important;
-    border-bottom: 2px solid #15803d !important; /* green-700 */
+    border-bottom: 2px solid #C41820 !important; /* intax-red-dark */
     font-size: 0.875rem !important;
     text-transform: none !important;
     letter-spacing: 0.025em !important;
@@ -150,7 +201,7 @@
 }
 
 .prose tbody tr:hover {
-    background-color: #f0fdf4 !important; /* green-50 */
+    background-color: #fef2f2 !important; /* red-50 */
 }
 
 .prose tbody tr:last-child {
@@ -168,7 +219,7 @@
 }
 
 .prose tbody tr:nth-child(even):hover {
-    background-color: #f0fdf4 !important; /* green-50 */
+    background-color: #fef2f2 !important; /* red-50 */
 }
 
 /* Frontend image border radius */

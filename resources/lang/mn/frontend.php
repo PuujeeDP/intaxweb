@@ -15,6 +15,7 @@ return [
     'view_all' => 'Бүгдийг Үзэх',
     'get_started' => 'Эхлэх',
     'view_services' => 'Үйлчилгээ',
+    'get_consultation' => 'Зөвлөгөө Авах',
 
     // Home Stats
     'customers' => 'Харилцагчид',
@@ -42,7 +43,7 @@ return [
     'cost_effective_desc' => 'Ил тод үнийн бодлого, нуугдмал зардалгүй таны хөрөнгө оруулалтаас дээд үр дүн.',
 
     // Home Blog Section
-    'latest_insights' => 'Сүүлийн Үеийн Мэдээлэл',
+    'latest_insights' => 'Мэдээ Мэдээлэл',
     'latest_insights_subtitle' => 'Манай сүүлийн үеийн нийтлэл, мэдээнүүдийг дагаарай',
 
     'testimonials' => 'Харилцагчдын сэтгэгдэл',
@@ -178,8 +179,7 @@ return [
     'contact_for_details' => 'Та бидэнтэй холбогдоод дэлгэрэнгүй мэдээлэл аваарай',
 
     // Services Page
-    'our_services' => 'Манай үйлчилгээ',
-    'services_subtitle' => 'Дэвшилтэд технологи ашиглан, мэдлэгт суурилсан санхүүгийн бүтээгдэхүүн үйлчилгээ',
+    'our_services' => 'МАНАЙ КОМПАНИЙН ҮЗҮҮЛЭХ ҮЙЛЧИЛГЭ',
     'view_details' => 'Дэлгэрэнгүй үзэх',
     'no_services' => 'Одоогоор үйлчилгээ байхгүй байна',
     'services_coming' => 'Удахгүй шинэ үйлчилгээнүүд нэмэгдэх болно',
@@ -220,4 +220,19 @@ return [
     'captcha' => 'Аюулгүй байдлын шалгалт',
     'answer' => 'Хариулт',
     'captcha_invalid' => 'Хариулт буруу байна. Дахин оролдоно уу.',
+
+    // Sidebar
+    'latest_posts' => 'Сүүлийн нийтлэлүүд',
+    'need_help' => 'Тусламж хэрэгтэй юу?',
+    'contact_us_anytime' => 'Бид танд туслахад бэлэн байна',
+
+    // Contact Page - Additional
+    'working_hours' => 'Ажлын цаг',
+    'monday_friday' => 'Даваа - Баасан',
+    'saturday' => 'Бямба',
+    'sunday' => 'Ням',
+    'closed' => 'Амарна',
+    'quick_response' => 'Хурдан хариулт',
+    'response_promise' => 'Бид таны захиаг ажлын 24 цагийн дотор хариулахыг зорьдог',
+    'back_to_posts' => 'Бүх мэдээ',
 ];

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Link } from '@tiptap/extension-link';
-import { Image } from '@tiptap/extension-image';
+import { ResizableImage } from './extensions/ResizableImage';
 import { Table } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
@@ -41,40 +41,7 @@ export default function RichTextEditor({ label, value, onChange, error, classNam
             Link.configure({
                 openOnClick: false,
             }),
-            Image.extend({
-                addAttributes() {
-                    return {
-                        ...this.parent?.(),
-                        width: {
-                            default: null,
-                            parseHTML: element => element.getAttribute('width'),
-                            renderHTML: attributes => {
-                                if (!attributes.width) return {};
-                                return { width: attributes.width };
-                            },
-                        },
-                        height: {
-                            default: null,
-                            parseHTML: element => element.getAttribute('height'),
-                            renderHTML: attributes => {
-                                if (!attributes.height) return {};
-                                return { height: attributes.height };
-                            },
-                        },
-                        style: {
-                            default: null,
-                            parseHTML: element => element.getAttribute('style'),
-                            renderHTML: attributes => {
-                                if (!attributes.style) return {};
-                                return { style: attributes.style };
-                            },
-                        },
-                    };
-                },
-            }).configure({
-                inline: true,
-                allowBase64: true,
-            }),
+            ResizableImage,
             Youtube.configure({
                 controls: true,
                 nocookie: true,
@@ -727,9 +694,55 @@ export default function RichTextEditor({ label, value, onChange, error, classNam
                                     <span className="text-xs text-gray-400">px</span>
                                 </div>
 
-                                {/* Alignment */}
+                                {/* Float - Text Wrap */}
                                 <div className="pt-2 border-t border-gray-700">
-                                    <div className="text-xs text-gray-300 mb-1">Align:</div>
+                                    <div className="text-xs text-gray-300 mb-1">Text Wrap:</div>
+                                    <div className="flex gap-1">
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                editor.commands.updateAttributes('image', {
+                                                    style: 'float: left; margin-right: 1rem; margin-bottom: 0.5rem;'
+                                                });
+                                            }}
+                                            className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded"
+                                            title="Float Left - Text wraps right"
+                                        >
+                                            Float Left
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                editor.commands.updateAttributes('image', {
+                                                    style: 'float: right; margin-left: 1rem; margin-bottom: 0.5rem;'
+                                                });
+                                            }}
+                                            className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded"
+                                            title="Float Right - Text wraps left"
+                                        >
+                                            Float Right
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                editor.commands.updateAttributes('image', {
+                                                    style: 'display: block; clear: both;'
+                                                });
+                                            }}
+                                            className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded"
+                                            title="No Float - Block display"
+                                        >
+                                            No Wrap
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Alignment (Block) */}
+                                <div className="pt-2 border-t border-gray-700">
+                                    <div className="text-xs text-gray-300 mb-1">Block Align:</div>
                                     <div className="flex gap-1">
                                         <button
                                             type="button"
@@ -742,7 +755,7 @@ export default function RichTextEditor({ label, value, onChange, error, classNam
                                             className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded"
                                             title="Align Left"
                                         >
-                                            ⬅ Left
+                                            Left
                                         </button>
                                         <button
                                             type="button"
@@ -755,7 +768,7 @@ export default function RichTextEditor({ label, value, onChange, error, classNam
                                             className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded"
                                             title="Align Center"
                                         >
-                                            ↔ Center
+                                            Center
                                         </button>
                                         <button
                                             type="button"
@@ -768,7 +781,7 @@ export default function RichTextEditor({ label, value, onChange, error, classNam
                                             className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded"
                                             title="Align Right"
                                         >
-                                            Right ➡
+                                            Right
                                         </button>
                                     </div>
                                 </div>

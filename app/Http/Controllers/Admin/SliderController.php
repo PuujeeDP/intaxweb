@@ -43,8 +43,6 @@ class SliderController extends Controller
     {
         $validated = $request->validate([
             'image_id' => 'nullable|exists:media,id',
-            'button_text' => 'nullable|string|max:255',
-            'button_url' => 'nullable|string|max:500',
             'button_target' => 'required|in:_self,_blank',
             'is_active' => 'required|boolean',
             'order' => 'nullable|integer',
@@ -52,12 +50,12 @@ class SliderController extends Controller
             'translations.*.title' => 'required|string|max:255',
             'translations.*.subtitle' => 'nullable|string|max:255',
             'translations.*.description' => 'nullable|string',
+            'translations.*.button_text' => 'nullable|string|max:255',
+            'translations.*.button_url' => 'nullable|string|max:500',
         ]);
 
         $slider = Slider::create([
             'image_id' => $validated['image_id'] ?? null,
-            'button_text' => $validated['button_text'] ?? null,
-            'button_url' => $validated['button_url'] ?? null,
             'button_target' => $validated['button_target'],
             'is_active' => $validated['is_active'],
             'order' => $validated['order'] ?? 0,
@@ -102,8 +100,6 @@ class SliderController extends Controller
     {
         $validated = $request->validate([
             'image_id' => 'nullable|exists:media,id',
-            'button_text' => 'nullable|string|max:255',
-            'button_url' => 'nullable|string|max:500',
             'button_target' => 'required|in:_self,_blank',
             'is_active' => 'required|boolean',
             'order' => 'nullable|integer',
@@ -111,12 +107,12 @@ class SliderController extends Controller
             'translations.*.title' => 'required|string|max:255',
             'translations.*.subtitle' => 'nullable|string|max:255',
             'translations.*.description' => 'nullable|string',
+            'translations.*.button_text' => 'nullable|string|max:255',
+            'translations.*.button_url' => 'nullable|string|max:500',
         ]);
 
         $slider->update([
             'image_id' => $validated['image_id'] ?? null,
-            'button_text' => $validated['button_text'] ?? null,
-            'button_url' => $validated['button_url'] ?? null,
             'button_target' => $validated['button_target'],
             'is_active' => $validated['is_active'],
             'order' => $validated['order'] ?? 0,

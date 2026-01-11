@@ -65,6 +65,7 @@ class Widget extends Model
             'stats' => 'Statistics Counter',
             'contact' => 'Contact Info',
             'social' => 'Social Links',
+            'youtube' => 'YouTube Video',
         ];
     }
 

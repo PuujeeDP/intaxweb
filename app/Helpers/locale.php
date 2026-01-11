@@ -16,7 +16,7 @@ if (!function_exists('localized_route')) {
     /**
      * Generate a localized route URL.
      */
-    function localized_route(string $name, array $parameters = [], string $locale = null): string
+    function localized_route(string $name, array $parameters = [], ?string $locale = null): string
     {
         $locale = $locale ?? current_locale();
 

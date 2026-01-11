@@ -28,7 +28,7 @@ use App\Http\Controllers\Frontend\CompanyHistoryController as FrontendCompanyHis
 
 // Redirect root to default locale
 Route::get('/', function () {
-    return redirect('/mn');
+    return redirect('/zh');
 });
 
 // Redirect old site URLs to new structure
@@ -48,7 +48,7 @@ Route::prefix('{locale}')->where(['locale' => 'mn|en|zh'])->group(function () {
    
 
     // About, Services, Team, Contact, History
-    Route::get('about', [AboutController::class, 'index'])->name('about.index');
+    //Route::get('about', [AboutController::class, 'index'])->name('about.index');
     Route::get('services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('service/{slug}', [ServiceController::class, 'show'])->name('services.show');
     Route::get('team', [FrontendTeamMemberController::class, 'index'])->name('team.index');

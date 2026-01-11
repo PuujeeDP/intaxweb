@@ -1,96 +1,57 @@
-{{-- Clients Section - Infinite Scroll --}}
+{{-- Clients Section - Modern Grid Design --}}
 @if ($clients->count() > 0)
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ __('frontend.customers') }}</h2>
-                <p class="text-xl text-gray-600">{{ __('frontend.customers_description') }}</p>
-            </div>
-
-            {{-- Infinite Scrolling Logos --}}
-            <div class="relative overflow-hidden" x-data="{ isPaused: false }">
-                {{-- Gradient overlays for smooth fade effect --}}
-                <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-                <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
-
-                <div class="flex animate-scroll"
-                     @mouseenter="isPaused = true; $el.style.animationPlayState = 'paused'"
-                     @mouseleave="isPaused = false; $el.style.animationPlayState = 'running'"
-                     style="animation: scroll 40s linear infinite;">
-
-                    {{-- First set of logos --}}
-                    @foreach ($clients as $client)
-                        <div class="flex-shrink-0 w-48 px-8 py-6">
-                            <div class="bg-white rounded-lg p-6 h-28 flex items-center justify-center hover:shadow-lg transition-all duration-300 group">
-                                @if ($client->logo)
-                                    @if ($client->website)
-                                        <a href="{{ $client->website }}" target="_blank" rel="noopener noreferrer"
-                                            class="block w-full h-full flex items-center justify-center">
-                                            <img src="{{ $client->logo->url }}"
-                                                alt="{{ $client->name }}"
-                                                class="max-w-full max-h-16 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                                                title="{{ $client->name }}">
-                                        </a>
-                                    @else
-                                        <img src="{{ $client->logo->url }}"
-                                            alt="{{ $client->name }}"
-                                            class="max-w-full max-h-16 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                                            title="{{ $client->name }}">
-                                    @endif
-                                @else
-                                    <div class="text-center">
-                                        <p class="text-gray-600 font-semibold text-sm">{{ $client->name }}</p>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-
-                    {{-- Duplicate set for seamless loop --}}
-                    @foreach ($clients as $client)
-                        <div class="flex-shrink-0 w-48 px-8 py-6">
-                            <div class="bg-white rounded-lg p-6 h-28 flex items-center justify-center hover:shadow-lg transition-all duration-300 group">
-                                @if ($client->logo)
-                                    @if ($client->website)
-                                        <a href="{{ $client->website }}" target="_blank" rel="noopener noreferrer"
-                                            class="block w-full h-full flex items-center justify-center">
-                                            <img src="{{ $client->logo->url }}"
-                                                alt="{{ $client->name }}"
-                                                class="max-w-full max-h-16 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                                                title="{{ $client->name }}">
-                                        </a>
-                                    @else
-                                        <img src="{{ $client->logo->url }}"
-                                            alt="{{ $client->name }}"
-                                            class="max-w-full max-h-16 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                                            title="{{ $client->name }}">
-                                    @endif
-                                @else
-                                    <div class="text-center">
-                                        <p class="text-gray-600 font-semibold text-sm">{{ $client->name }}</p>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    <section class="py-10 lg:py-18  bg-gray-300 relative overflow-hidden">
+        {{-- Background decoration --}}
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-gray-100 rounded-full opacity-50 translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-72 h-72 bg-gray-50 rounded-full opacity-60 -translate-x-1/3 translate-y-1/3">
         </div>
 
-        <style>
-            @keyframes scroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(-50%);
-                }
-            }
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {{-- Section Header --}}
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-5"
+                    style="font-family: 'Open Sans', sans-serif;">
+                    {{ __('frontend.customers') ?? 'Манай харилцагчид' }}
+                </h2>
+                <p class="text-gray-600">
+                    {{ __('frontend.customers_description') ?? 'Бидэнтэй хамтран ажилладаг байгууллагууд' }}
+                </p>
+            </div>
 
-            .animate-scroll {
-                display: flex;
-                width: max-content;
-            }
-        </style>
+            {{-- Clients Grid --}}
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                @foreach ($clients as $client)
+                    <div
+                        class="group relative bg-gray-50 rounded-xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100">
+                        @if ($client->logo)
+                            @if ($client->website)
+                                <a href="{{ $client->website }}" target="_blank" rel="noopener noreferrer"
+                                    class="flex items-center justify-center h-20">
+                                    <img src="{{ $client->logo->url }}" alt="{{ $client->name }}"
+                                        class="max-w-full max-h-16 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                                        title="{{ $client->name }}">
+                                </a>
+                            @else
+                                <div class="flex items-center justify-center h-20">
+                                    <img src="{{ $client->logo->url }}" alt="{{ $client->name }}"
+                                        class="max-w-full max-h-16 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                                        title="{{ $client->name }}">
+                                </div>
+                            @endif
+                        @else
+                            <div class="flex items-center justify-center h-20">
+                                <p
+                                    class="text-gray-500 font-medium text-sm text-center group-hover:text-gray-900 transition-colors duration-300">
+                                    {{ $client->name }}
+                                </p>
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </section>
 @endif

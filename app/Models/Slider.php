@@ -11,7 +11,7 @@ class Slider extends Model
 {
     use HasFactory, Translatable;
 
-    protected $translatable = ['title', 'subtitle', 'description'];
+    protected $translatable = ['title', 'subtitle', 'description', 'button_text', 'button_url'];
 
     protected $fillable = [
         'image_id',
@@ -57,5 +57,21 @@ class Slider extends Model
     public function getDescriptionAttribute(): ?string
     {
         return $this->translate('description', app()->getLocale());
+    }
+
+    /**
+     * Accessor for button_text (current locale).
+     */
+    public function getButtonTextAttribute(): ?string
+    {
+        return $this->translate('button_text', app()->getLocale());
+    }
+
+    /**
+     * Accessor for button_url (current locale).
+     */
+    public function getButtonUrlAttribute(): ?string
+    {
+        return $this->translate('button_url', app()->getLocale());
     }
 }

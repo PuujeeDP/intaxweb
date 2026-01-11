@@ -12,50 +12,60 @@
 
 @section('content')
     {{-- Modern Hero Section --}}
-    <section
-        class="relative @if ($page->headerImage) @else bg-gradient-to-br from-green-600 via-green-700 to-emerald-900 @endif overflow-hidden">
+    <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #d40c19 0%, #a00a14 50%, #7a0810 100%);">
         @if ($page->headerImage)
             {{-- Header Image Background --}}
             <div class="absolute inset-0">
                 <img src="{{ $page->headerImage->file_path }}" alt="{{ $title }}" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+                <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(212, 12, 25, 0.85) 0%, rgba(160, 10, 20, 0.9) 100%);"></div>
             </div>
         @else
-            {{-- Animated Background Pattern --}}
+            {{-- Hexagon Pattern Background --}}
             <div class="absolute inset-0 opacity-10">
                 <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <pattern id="page-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                            <circle cx="30" cy="30" r="1.5" fill="white" opacity="0.6" />
-                            <line x1="30" y1="30" x2="60" y2="30" stroke="white"
-                                stroke-width="0.5" opacity="0.4" />
-                            <line x1="30" y1="30" x2="30" y2="60" stroke="white"
-                                stroke-width="0.5" opacity="0.4" />
+                        <pattern id="hexagon-pattern" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse">
+                            <polygon points="28,6 52,18 52,42 28,54 4,42 4,18" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
+                            <polygon points="28,56 52,68 52,92 28,104 4,92 4,68" fill="none" stroke="white" stroke-width="0.5" opacity="0.6"/>
                         </pattern>
                     </defs>
-                    <rect width="100%" height="100%" fill="url(#page-grid)" />
+                    <rect width="100%" height="100%" fill="url(#hexagon-pattern)" />
+                </svg>
+            </div>
+
+            {{-- Large Decorative Hexagons --}}
+            <div class="absolute top-1/2 right-0 transform translate-x-1/3 -translate-y-1/2 opacity-10 hidden lg:block">
+                <svg width="500" height="500" viewBox="0 0 100 100" fill="none">
+                    <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="white" stroke-width="0.5" fill="none"/>
+                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" stroke="white" stroke-width="0.3" fill="none"/>
+                    <polygon points="50,25 75,37.5 75,62.5 50,75 25,62.5 25,37.5" stroke="white" stroke-width="0.2" fill="none"/>
+                </svg>
+            </div>
+
+            <div class="absolute bottom-0 left-0 transform -translate-x-1/4 translate-y-1/4 opacity-10 hidden lg:block">
+                <svg width="400" height="400" viewBox="0 0 100 100" fill="none">
+                    <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="white" stroke-width="0.5" fill="none"/>
+                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" stroke="white" stroke-width="0.3" fill="none"/>
                 </svg>
             </div>
 
             {{-- Floating Gradient Orbs --}}
-            <div class="absolute inset-0 overflow-hidden opacity-20">
+            <div class="absolute inset-0 overflow-hidden opacity-15">
                 <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl animate-pulse"></div>
-                <div class="absolute bottom-0 right-0 w-96 h-96 bg-emerald-300 rounded-full filter blur-3xl animate-pulse"
-                    style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-red-300 rounded-full filter blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
             </div>
         @endif
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
             <div class="text-center">
                 @if (!$page->hide_title)
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight" style="font-family: 'Open Sans', sans-serif;">
                         {{ $title }}
                     </h1>
                 @endif
 
                 @if ($excerpt)
-                    <p
-                        class="text-xl md:text-2xl @if ($page->headerImage) text-gray-100 @else text-green-100 @endif mb-8 max-w-3xl mx-auto leading-relaxed">
+                    <p class="text-xl md:text-2xl text-red-100 mb-8 max-w-3xl mx-auto leading-relaxed">
                         {{ $excerpt }}
                     </p>
                 @endif
@@ -85,4 +95,9 @@
             @endif
         </div>
     </article>
+
+    {{-- Team Section - Only show for "about" page --}}
+    @if ($page->slug === 'about')
+        @include('frontend.partials.team-section')
+    @endif
 @endsection

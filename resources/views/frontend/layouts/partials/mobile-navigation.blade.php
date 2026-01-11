@@ -62,7 +62,7 @@
                 class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:bg-green-50 hover:text-green-600">
                 Нүүр
             </a>
-            <a href="{{ localized_route('about.index') }}"
+            <a href="{{ route('pages.show', ['locale' => app()->getLocale(), 'slug' => 'about']) }}"
                 class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:bg-green-50 hover:text-green-600">
                 Бидний тухай
             </a>

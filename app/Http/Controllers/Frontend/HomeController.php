@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Client;
 use App\Models\Testimonial;
+use App\Models\Service;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -23,12 +24,12 @@ class HomeController extends Controller
             ->orderBy('order', 'asc')
             ->get();
 
-        // Get latest published posts
+        // Get latest published posts (10 for home page)
         $latestPosts = Post::with(['author', 'category', 'featuredImage'])
             ->where('status', 'published')
             ->where('published_at', '<=', now())
             ->orderBy('published_at', 'desc')
-            ->limit(6)
+            ->limit(10)
             ->get();
 
         // Get featured posts (first 3)
@@ -72,6 +73,12 @@ class HomeController extends Controller
             ->ordered()
             ->get();
 
-        return view('frontend.home', compact('sliders', 'latestPosts', 'featuredPosts', 'categories', 'clients', 'clientTags', 'testimonials'));
+        // Get active services
+        $services = Service::with(['featuredImage', 'translations'])
+            ->where('is_active', true)
+            ->orderBy('order', 'asc')
+            ->get();
+
+        return view('frontend.home', compact('sliders', 'latestPosts', 'featuredPosts', 'categories', 'clients', 'clientTags', 'testimonials', 'services'));
     }
 }

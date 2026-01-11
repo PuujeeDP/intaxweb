@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -67,9 +68,12 @@ class ContactController extends Controller
         Session::forget('captcha_answer');
 
         try {
+            // Get contact email from settings, fallback to mail.from.address
+            $toEmail = Setting::get('contact_email') ?: config('mail.from.address');
+
             // Send email
-            Mail::send([], [], function ($message) use ($validated) {
-                $message->to(config('mail.from.address'))
+            Mail::send([], [], function ($message) use ($validated, $toEmail) {
+                $message->to($toEmail)
                     ->replyTo($validated['email'], $validated['name'])
                     ->subject('Вэбээс мессеж: ' . $validated['subject'])
                     ->html($this->buildEmailHtml($validated));
@@ -95,7 +99,7 @@ class ContactController extends Controller
     {
         return "
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
-                <h2 style='color: #059669; border-bottom: 2px solid #059669; padding-bottom: 10px;'>
+                <h2 style='color: #d40c19; border-bottom: 2px solid #d40c19; padding-bottom: 10px;'>
                     Шинэ холбоо барих хүсэлт
                 </h2>
 

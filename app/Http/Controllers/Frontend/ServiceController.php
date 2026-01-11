@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Models\Service;
 use Illuminate\View\View;
 
@@ -13,13 +14,19 @@ class ServiceController extends Controller
      */
     public function index(): View
     {
+        // Get services page content
+        $page = Page::with(['headerImage', 'translations'])
+            ->where('slug', 'services')
+            ->where('status', 'published')
+            ->first();
+
         $services = Service::with(['featuredImage', 'translations'])
             ->where('is_active', true)
             ->orderBy('order', 'asc')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('frontend.services.index', compact('services'));
+        return view('frontend.services.index', compact('services', 'page'));
     }
 
     /**

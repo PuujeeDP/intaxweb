@@ -16,6 +16,7 @@ return [
     'get_started' => '开始使用',
     'view_services' => '查看服务',
     'menu' => '菜单',
+    'get_consultation'=> '获取咨询',
 
     // Home Stats
     'customers' => '客户',
@@ -190,7 +191,6 @@ return [
 
     // Services Page
     'our_services' => '我们的服务',
-    'services_subtitle' => '利用先进技术，提供基于知识的金融产品与服务',
     'view_details' => '查看详情',
     'no_services' => '目前没有可用服务',
     'services_coming' => '新服务即将添加',
@@ -230,4 +230,19 @@ return [
     'captcha' => '安全验证',
     'answer' => '答案',
     'captcha_invalid' => '答案不正确。请重试。',
+
+    // Sidebar
+    'latest_posts' => '最新文章',
+    'need_help' => '需要帮助？',
+    'contact_us_anytime' => '我们随时为您服务',
+
+    // Contact Page - Additional
+    'working_hours' => '工作时间',
+    'monday_friday' => '周一 - 周五',
+    'saturday' => '周六',
+    'sunday' => '周日',
+    'closed' => '休息',
+    'quick_response' => '快速响应',
+    'response_promise' => '我们会在24个工作小时内回复您的消息',
+    'back_to_posts' => '所有文章',
 ];
